@@ -1,0 +1,154 @@
+openapi: "3.0.2"
+
+info:
+  version: 1.0.0
+  title: Color Code API
+  description: API for reading, adding, and updating CJIS color codes
+
+servers:
+  - url: https://notarealsite.yet.gov/api
+  - url: https://notarealsite.either.gov/api
+
+paths:
+  /HairColor:
+    get:
+      summary: Get hair color code list
+      description: Returns all hair color codes and descriptions
+      responses:
+        '200':
+          description: A list of hair color codes
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ColorCodeList"
+              example:
+                - code: BLK
+                  description: BLACK
+                - code: "BRO"
+                  description: "BROWN"
+        '403':
+          $ref: "#/components/responses/Unauthorized"
+        '500':
+          $ref: "#/components/responses/DatabaseError"
+  /HairColor/{code}:
+    get:
+      summary: Returns all hair records with prefix match on code
+      parameters:
+        - name: code
+          in: path
+          description: prefix match on the code
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of color codes with prefix match on input parameter.
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ColorCodeList"
+              example:
+                - code: BLK
+                  description: BLACK
+                - code: "BRO"
+                  description: "BROWN"
+        '403':
+          $ref: "#/components/responses/Unauthorized"
+        '500':
+          $ref: "#/components/responses/DatabaseError"
+  /EyeColor:
+    get:
+      summary: Get eye color code list
+      description: Returns all eye color codes and descriptions
+      responses:
+        '200':
+          description: A list of all eye color codes
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ColorCodeList"
+              example:
+                - code: BLK
+                  description: BLACK
+                - code: "BRO"
+                  description: "BROWN"
+        '403':
+          $ref: "#/components/responses/Unauthorized"
+        '500':
+          $ref: "#/components/responses/DatabaseError"
+  /EyeColor/{code}:
+    get:
+      summary: Returns all eye records with prefix match on code
+      parameters:
+        - name: code
+          in: path
+          description: prefix match on the code
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of color codes with prefix match on input parameter.
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/ColorCodeList"
+              example:
+                - code: BLK
+                  description: BLACK
+                - code: "BRO"
+                  description: "BROWN"
+        '403':
+          $ref: "#/components/responses/Unauthorized"
+        '500':
+          $ref: "#/components/responses/DatabaseError"
+components:
+  schemas:
+    ColorCode:
+      required:
+        - code
+        - description
+      properties:
+        code:
+          type: string
+          maxLength: 3
+        description:
+          type: string
+          maxLength: 25
+        last_changed:
+          type: string
+          maxLength: 10
+    ColorCodeList:
+      type: array
+      items:
+        $ref: "#/components/schemas/ColorCode" 
+  responses:
+    Unauthorized:
+      description: Not authorized; return unauthorized fields
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: string
+            example:
+              - code
+              - description
+    DatabaseError:
+      description: Server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              errono:
+                type: integer
+              sqlMessage:
+                type: string
+  securitySchemes:
+    cjis_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
