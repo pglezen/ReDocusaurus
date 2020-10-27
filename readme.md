@@ -45,7 +45,7 @@ These are the steps I used.
 3. Installed NPM packages for Redoc.
 
    ```console
-   $ npm install mobx@^4.2.0 styled-components core-js redoc
+   $ npm install mobx@^4.15.7 styled-components core-js redoc
    ```
 
 4. Run the sample site as a check.

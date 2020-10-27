@@ -9,15 +9,15 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.56",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.56",
+    "@docusaurus/core": "^2.0.0-alpha.65",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.65",
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
-    "mobx": "^4.15.4",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "redoc": "^2.0.0-rc.30",
-    "styled-components": "^5.1.1"
+    "mobx": "^4.15.7",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "redoc": "^2.0.0-rc.40",
+    "styled-components": "^5.2.0"
   },
   "browserslist": {
     "production": [
