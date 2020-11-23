@@ -28,7 +28,7 @@ I assume you know a little about
 * OpenAPI 3.0
 * Node.js/NPM
 
-I use NPM out of habit.  Yarn should work also.
+I use NPM out of habit.  Yarn should also work.
 
 ## Steps
 
@@ -39,22 +39,26 @@ These are the steps I used.
 2. Initialize a Docusaurus 2 project with classic presets.
 
    ```console
-   $ npx @docusaurus/init@next init redoc2 classic 
+   $ npx @docusaurus/init init redoc2 classic 
    ```
 
 3. Installed NPM packages for Redoc.
 
    ```console
-   $ npm install mobx@^4.15.7 styled-components core-js redoc
+   $ cd redoc2
+   $ npm install mobx styled-components core-js redoc
+   $ npm install
    ```
 
 4. Run the sample site as a check.
 
    ```console
-   $ npx docusaurus start
+   $ npm run start
    ```
 
-5. Add `openapi/ColorCode.yaml` under `static` directory.
+5. Add `openapi/ColorCode.yaml` from this repository under
+   the `static` directory in your new project so that you
+   have a `static/openapi/ColorCode.yaml` file.
 
 6. Edit `src/pages/index.js`.  Add `RedocStandalone` import as shown
    below.
